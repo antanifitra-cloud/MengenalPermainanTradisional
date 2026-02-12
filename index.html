@@ -653,6 +653,36 @@
       .quiz-options { grid-template-columns: 1fr; }
       .stats-bar { gap: 2rem; }
     }
+.youtube-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+  background: #FF0000;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #B00000;
+}
+
+.youtube-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #B00000;
+}
+
+.youtube-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #B00000;
+}
+
+.youtube-btn img {
+  width: 22px;
+}
+
+
   </style>
 </head>
 <body>
@@ -780,6 +810,13 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
           <h4>💡 Nilai yang Dipelajari</h4>
           <div class="values-pills" id="modalValues"></div>
         </div>
+        <div style="text-align:center;">
+         <a id="youtubeLink" target="_blank" class="youtube-btn">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+            Tonton di YouTube
+          </a>
+</div>
+
       </div>
     </div>
   </div>
@@ -788,7 +825,7 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
   // ========== DATA ==========
   const games = [
     {
-      emoji: '🥥',
+      emoji: '🌰',
       name: 'Maggaleceng',
       tag: 'Strategi',
       origin: '📍 Berasal dari Timur Tengah',
@@ -862,11 +899,12 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
   ];
 
   const quizData = [
-    { q: 'Berapa jumlah biji awal yang biasanya diisi di setiap lubang Congklak?', opts: ['5 biji', '7 biji', '10 biji', '12 biji'], ans: 1, exp: 'Benar! Dalam Congklak, setiap lubang diisi dengan 7 biji.' },
-    { q: 'Permainan Gobak Sodor berasal dari daerah mana?', opts: ['Kalimantan', 'Sulawesi', 'Jawa', 'Papua'], ans: 2, exp: 'Tepat! Gobak Sodor (Galah Asin) berasal dari Jawa.' },
-    { q: 'Apa nama pola yang digambar di tanah untuk bermain Engklek?', opts: ['Lingkaran besar', 'Kotak-kotak bertahap', 'Segitiga berlapis', 'Bintang bersudut'], ans: 1, exp: 'Betul! Engklek dimainkan di atas kotak-kotak bertahap yang digambar di tanah.' },
-    { q: 'Gasing biasanya terbuat dari bahan apa?', opts: ['Batu', 'Logam', 'Kayu', 'Plastik'], ans: 2, exp: 'Benar! Gasing tradisional umumnya terbuat dari kayu yang diukir berbentuk kerucut.' },
-    { q: 'Dalam Petak Umpet, sebutan untuk orang yang mencari adalah?', opts: ['Raja', 'Kucing', 'Harimau', 'Penjaga'], ans: 1, exp: 'Tepat! Orang yang bertugas mencari dalam Petak Umpet disebut "kucing".' },
+    { q: 'Berapa jumlah biji awal yang biasanya diisi di setiap lubang Maggaleceng?', opts: ['5 biji', '7 biji', '10 biji', '12 biji'], ans: 1, exp: 'Benar! Dalam Maggaleceng, setiap lubang diisi dengan 7 biji.' },
+    { q: 'Permainan Main asing berasal dari daerah mana?', opts: ['Kalimantan', 'Sulawesi', 'Jawa', 'Papua'], ans: 2, exp: 'Tepat! Gobak Sodor (Galah Asin) berasal dari Jawa.' },
+    { q: 'Apa nama pola yang digambar di tanah untuk bermain Enggo-enggo?', opts: ['Lingkaran besar', 'Kotak-kotak bertahap', 'Segitiga berlapis', 'Bintang bersudut'], ans: 1, exp: 'Betul! Enggo-enggo dimainkan di atas kotak-kotak bertahap yang digambar di tanah.' },
+    { q: 'Maggasing biasanya terbuat dari bahan apa?', opts: ['Batu', 'Logam', 'Kayu', 'Plastik'], ans: 2, exp: 'Benar! Gasing tradisional umumnya terbuat dari kayu yang diukir berbentuk kerucut.' },
+    { q: 'Dalam Enggo-enggo, ada berapa sebutan untuk orang yang mencari?', opts: ['2', '3', '6', '1'], ans: 1, exp: 'Tepat! Sebutannya ada 3, Enggo benteng, enggo badan, dan enggo nama.' },
+    { q: 'Permainan layang-layang dapat melatih?', opts: ['Keseimbangan', 'Koordinasi', 'Konsentrasi', 'Kecepatan'], ans: 2, exp: 'Benar! Permainan layang-layang melatih keseimbangan dan koordinasi.' },
   ];
 
   // ========== BUBBLES ==========
@@ -880,7 +918,7 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
       width:${size}px;height:${size}px;
       left:${Math.random()*100}%;
       background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-duration:${Math.random()*15+10}s;
+      animation-duration:${Math.random()*15+10}s; 
       animation-delay:${Math.random()*10}s;
     `;
     bubblesEl.appendChild(b);
@@ -941,7 +979,11 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
     });
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.getElementById('youtubeLink').href =
+  `https://www.youtube.com/results?search_query=${g.name}+permainan+tradisional+sulawesi`;
+
   }
+  
   document.getElementById('modalClose').addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
   function closeModal() {
@@ -1041,3 +1083,4 @@ Jelajahi kekayaan permainan tradisional sulawesi yang seru, penuh nilai budaya, 
 </script>
 </body>
 </html>
+
